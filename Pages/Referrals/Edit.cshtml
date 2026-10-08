@@ -1,0 +1,74 @@
+@page "{id:int}"
+@model CommunityHealthServiceTracker.Pages.Referrals.EditModel
+
+@{
+    ViewData["Title"] = "Edit Referral";
+}
+
+<h1>Edit Referral</h1>
+
+<p>Update the referral information below.</p>
+
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <input type="hidden" asp-for="Input.Id" />
+
+    <div>
+        <label asp-for="Input.Reference"></label>
+        <input asp-for="Input.Reference" />
+        <span asp-validation-for="Input.Reference"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.ServiceName"></label>
+        <input asp-for="Input.ServiceName" />
+        <span asp-validation-for="Input.ServiceName"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.Status"></label>
+        <select asp-for="Input.Status"
+                asp-items="Html.GetEnumSelectList<ReferralStatus>()">
+        </select>
+        <span asp-validation-for="Input.Status"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.Priority"></label>
+        <select asp-for="Input.Priority"
+                asp-items="Html.GetEnumSelectList<ReferralPriority>()">
+        </select>
+        <span asp-validation-for="Input.Priority"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.ReferralDate"></label>
+        <input asp-for="Input.ReferralDate" />
+        <span asp-validation-for="Input.ReferralDate"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.AssignedTeam"></label>
+        <input asp-for="Input.AssignedTeam" />
+        <span asp-validation-for="Input.AssignedTeam"></span>
+    </div>
+
+    <div>
+        <label asp-for="Input.Summary"></label>
+        <textarea asp-for="Input.Summary"></textarea>
+        <span asp-validation-for="Input.Summary"></span>
+    </div>
+
+    <button type="submit">Save changes</button>
+
+    <a asp-page="./Details" asp-route-id="@Model.Input.Id">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

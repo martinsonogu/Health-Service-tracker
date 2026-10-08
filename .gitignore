@@ -1,0 +1,25 @@
+# .NET build output
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Local development database
+*.db
+*.db-shm
+*.db-wal
+
+# Test and coverage output
+TestResults/
+**/TestResults/
+coverage/
+*.coverage
+
+# Editor and operating system files
+.vs/
+.vscode/
+.DS_Store
+
+# Local secrets
+.env
+appsettings.Development.local.json

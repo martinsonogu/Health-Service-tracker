@@ -1,0 +1,97 @@
+@page
+@model CommunityHealthServiceTracker.Pages.Referrals.CreateModel
+
+@{
+    ViewData["Title"] = "Create Referral";
+}
+
+<h1>Create Referral</h1>
+
+<p>Add a new fictional community health referral.</p>
+
+<form method="post">
+    <p>Fields marked "(required)" must be completed.</p>
+    <div asp-validation-summary="All"
+        class="validation-summary-errors"
+        role="alert"
+        aria-label="Form validation errors">
+    </div>
+
+    
+    <div>
+        <label asp-for="Referral.Reference">
+            Reference (required)
+        </label>
+
+        <input asp-for="Referral.Reference"
+            aria-describedby="reference-error" />
+
+        <span asp-validation-for="Referral.Reference"
+            id="reference-error"></span>
+    </div>
+
+    
+    <div>
+        <label asp-for="Referral.ServiceName">
+            Service name (required)
+        </label>
+
+        <input asp-for="Referral.ServiceName"
+            aria-describedby="service-error" />
+
+        <span asp-validation-for="Referral.ServiceName"
+            id="service-error"></span>
+    </div>
+
+
+    <div>
+        <label asp-for="Referral.Status"></label>
+        <select asp-for="Referral.Status"
+                asp-items="Html.GetEnumSelectList<ReferralStatus>()">
+        </select>
+        <span asp-validation-for="Referral.Status"></span>
+    </div>
+
+    <div>
+        <label asp-for="Referral.Priority"></label>
+        <select asp-for="Referral.Priority"
+                asp-items="Html.GetEnumSelectList<ReferralPriority>()">
+        </select>
+        <span asp-validation-for="Referral.Priority"></span>
+    </div>
+
+    <div>
+        <label asp-for="Referral.ReferralDate"></label>
+        <input asp-for="Referral.ReferralDate" />
+        <span asp-validation-for="Referral.ReferralDate"></span>
+    </div>
+
+    <div>
+        <label asp-for="Referral.AssignedTeam"></label>
+        <input asp-for="Referral.AssignedTeam" />
+        <span asp-validation-for="Referral.AssignedTeam"></span>
+    </div>
+
+        
+    <div>
+        <label asp-for="Referral.Summary">
+            Summary (required)
+        </label>
+
+        <textarea asp-for="Referral.Summary"
+                aria-describedby="summary-error"></textarea>
+
+        <span asp-validation-for="Referral.Summary"
+            id="summary-error"></span>
+    </div>
+
+
+    <button type="submit">Create Referral</button>
+
+    <a asp-page="./Index">Back to referrals</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

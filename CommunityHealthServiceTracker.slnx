@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CommunityHealthServiceTracker.csproj" />
+  <Project Path="CommunityHealthServiceTracker.Tests/CommunityHealthServiceTracker.Tests.csproj" />
+</Solution>

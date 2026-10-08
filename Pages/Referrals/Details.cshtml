@@ -1,0 +1,50 @@
+@page "{id:int}"
+@model CommunityHealthServiceTracker.Pages.Referrals.DetailsModel
+
+@{
+    ViewData["Title"] = "Referral Details";
+}
+
+<h1>Referral Details</h1>
+
+<dl>
+    <dt>Reference</dt>
+    <dd>@Model.Referral.Reference</dd>
+
+    <dt>Service</dt>
+    <dd>@Model.Referral.ServiceName</dd>
+
+    <dt>Status</dt>
+    <dd>@Html.DisplayFor(model => model.Referral.Status)</dd>
+
+    <dt>Priority</dt>
+    <dd>@Model.Referral.Priority</dd>
+
+    <dt>Referral Date</dt>
+    <dd>@Model.Referral.ReferralDate.ToString("dd MMMM yyyy")</dd>
+
+    <dt>Assigned Team</dt>
+    <dd>@(Model.Referral.AssignedTeam ?? "Unassigned")</dd>
+
+    <dt>Summary</dt>
+    <dd>@Model.Referral.Summary</dd>
+</dl>
+
+<div class="referral-actions">
+    <a asp-page="./Edit"
+       asp-route-id="@Model.Referral.Id"
+       class="btn btn-primary">
+        Edit referral
+    </a>
+
+    <a asp-page="./Delete"
+       asp-route-id="@Model.Referral.Id"
+       class="btn btn-outline-danger">
+        Delete referral
+    </a>
+
+    <a asp-page="./Index"
+       class="btn btn-outline-secondary">
+        Back to referrals
+    </a>
+</div>

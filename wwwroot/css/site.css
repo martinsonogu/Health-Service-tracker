@@ -1,0 +1,651 @@
+
+/* ==========================================
+   Community Health Service Tracker
+   Main application stylesheet
+   ========================================== */
+
+/* 1. Global styles */
+
+:root {
+    --color-primary: #005eb8;
+    --color-primary-dark: #003087;
+    --color-text: #212b32;
+    --color-secondary: #425563;
+    --color-background: #f5f7f8;
+    --color-white: #ffffff;
+    --color-border: #d8dde0;
+    --color-focus: #ffeb3b;
+    --color-success: #007f3b;
+    --color-warning: #7c5100;
+    --color-danger: #b10e1e;
+}
+
+html {
+    font-size: 16px;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--color-text);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+a {
+    color: var(--color-primary);
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* 2. Keyboard accessibility */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible,
+.referrals-table-wrapper:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px var(--color-text);
+}
+
+.skip-link {
+    position: absolute;
+    top: -120px;
+    left: 16px;
+    z-index: 1000;
+    padding: 12px 18px;
+    background: var(--color-white);
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 16px;
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+/* 3. Application header */
+
+.app-header {
+    background-color: var(--color-primary);
+    margin-bottom: 32px;
+}
+
+.app-header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+.app-brand {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.app-brand:hover,
+.app-brand:focus {
+    color: var(--color-white);
+    text-decoration: underline;
+}
+
+.app-brand__title {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* 4. Primary navigation */
+
+.app-navigation__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.app-navigation a {
+    display: inline-block;
+    padding: 8px 4px;
+    color: var(--color-white);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.app-navigation a:hover {
+    color: var(--color-white);
+    text-decoration: underline;
+}
+
+.app-navigation a:focus-visible,
+.app-brand:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    box-shadow: none;
+}
+
+/* 5. Main content */
+
+main {
+    min-height: 60vh;
+}
+
+
+main > h1:first-child {
+    margin-top: 0;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+/* 6. Dashboard summary */
+
+.dashboard-summary {
+    margin: 32px 0 40px;
+}
+
+.dashboard-summary h2 {
+    margin-bottom: 20px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    min-width: 0;
+    padding: 24px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-left: 5px solid var(--color-primary);
+    border-radius: 4px;
+}
+
+.dashboard-card h3 {
+    margin: 0 0 16px;
+    color: var(--color-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.dashboard-card__number {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 7. Referral tables */
+
+.table,
+.referrals-table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    background-color: var(--color-white);
+}
+
+.table th,
+.table td,
+.referrals-table th,
+.referrals-table td {
+    padding: 16px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.table thead th,
+.referrals-table thead th {
+    background-color: #e8edee;
+    color: var(--color-text);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.table tbody tr:nth-child(even),
+.referrals-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover,
+.referrals-table tbody tr:hover {
+    background-color: #eef4f8;
+}
+
+.table a,
+.referrals-table a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.table a:hover,
+.referrals-table a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* 8. Responsive table wrapper */
+
+.referrals-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0 24px;
+    overscroll-behavior-x: contain;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+}
+
+.referrals-table-wrapper .referrals-table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+}
+
+/* 9. Buttons */
+
+.btn,
+button[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.btn-primary,
+button[type="submit"] {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    color: var(--color-white);
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+    color: var(--color-white);
+}
+
+.btn-danger {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+.btn-danger:hover {
+    background-color: #8f0b18;
+    border-color: #8f0b18;
+    color: var(--color-white);
+}
+
+button:disabled,
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 10. Forms */
+
+form {
+    margin-bottom: 24px;
+}
+
+fieldset {
+    padding: 20px;
+    margin-bottom: 24px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+}
+
+legend {
+    float: none;
+    width: auto;
+    padding: 0 8px;
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    min-height: 44px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    border: 2px solid #66747c;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-primary);
+}
+
+.form-control {
+    max-width: 600px;
+    border: 2px solid #66747c;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-focus);
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* 11. Validation messages */
+
+.field-validation-error,
+.validation-summary-errors,
+.text-danger {
+    color: var(--color-danger);
+    font-weight: 600;
+}
+
+.input-validation-error {
+    border: 2px solid var(--color-danger);
+}
+
+.validation-summary-errors {
+    padding: 16px;
+    margin-bottom: 20px;
+    background-color: #fff5f5;
+    border-left: 5px solid var(--color-danger);
+}
+
+/* 12. Status and priority badges
+   Available for future Razor markup */
+
+.status-badge,
+.priority-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.status-new {
+    background-color: #e8f1fa;
+    color: #003087;
+}
+
+.status-in-progress {
+    background-color: #fff1c2;
+    color: #594000;
+}
+
+.status-completed {
+    background-color: #d9f0e3;
+    color: #005a30;
+}
+
+.priority-urgent {
+    background-color: #fce4e6;
+    color: #8f0b18;
+}
+
+.priority-routine {
+    background-color: #e8edee;
+    color: #34434b;
+}
+
+/* 13. Footer */
+
+.footer {
+    margin-top: 48px;
+    padding: 24px 0;
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-secondary);
+    font-size: 0.875rem;
+ }
+ /*
+.footer {
+    position: static;
+    bottom: auto;
+    width: 100%;
+    margin-top: 48px;
+    padding: 24px 0;
+    background-color: #ffffff;
+    border-top: 1px solid #d8dde0;
+    color: #425563;
+    font-size: 0.875rem;
+} */
+
+.footer a {
+    color: var(--color-primary);
+}
+
+/* 14. Tablet */
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 15. Mobile */
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.65rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .app-header {
+        margin-bottom: 24px;
+    }
+
+    .app-header__container {
+        padding: 16px;
+    }
+
+    .app-brand__title {
+        font-size: 1.25rem;
+    }
+
+    .app-navigation__list {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .app-navigation a {
+        padding: 8px 4px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+    .dashboard-card__number {
+        font-size: 2rem;
+    }
+
+    .table th,
+    .table td,
+    .referrals-table th,
+    .referrals-table td {
+        padding: 12px;
+    }
+
+    fieldset {
+        padding: 16px;
+    }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+        max-width: 100%;
+    }
+}
+
+.view-all-referrals {
+    display: block;
+    margin: 24px 0 40px;
+}
+
+.view-all-referrals a {
+    display: inline-block;
+    color: #005eb8;
+    font-weight: 700;
+    text-decoration: underline;
+}
+/* Referral details actions */
+
+.referral-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 600px) {
+    .referral-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+/* ==========================================
+   Accessibility improvements
+   ========================================== */
+
+/* Make the current navigation page visually clear. */
+.app-navigation a[aria-current="page"] {
+    color: var(--color-white);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+}
+
+/* Keep keyboard focus visible on the main content. */
+main:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+}
+
+/* Help keyboard users identify scrollable tables. */
+.referrals-table-wrapper:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px var(--color-text);
+}

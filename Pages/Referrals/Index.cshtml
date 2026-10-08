@@ -1,0 +1,176 @@
+
+@page
+@model CommunityHealthServiceTracker.Pages.Referrals.IndexModel
+
+@using CommunityHealthServiceTracker.Models
+
+@{
+    ViewData["Title"] = "Referrals";
+}
+
+<h1>Community Health Referrals</h1>
+
+<p>
+    Search, manage and track fictional referrals across community health services.
+</p>
+
+<!-- Search and filters -->
+<form method="get" class="referral-filters">
+    <fieldset>
+        <legend>Search and filter referrals</legend>
+
+        <div class="form-group">
+            <label for="searchTerm">Search referrals</label>
+            <input id="searchTerm"
+                   name="searchTerm"
+                   type="search"
+                   class="form-control"
+                   value="@Model.SearchTerm"
+                   placeholder="Reference, service or team" />
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status"
+                    name="status"
+                    class="form-control">
+
+                <option value="">All statuses</option>
+
+                @foreach (var status in Enum.GetValues<ReferralStatus>())
+                {
+                    <option value="@status"
+                            selected="@(Model.Status == status)">
+                        @Html.DisplayFor(_ => status)
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="priority">Priority</label>
+            <select id="priority"
+                    name="priority"
+                    class="form-control">
+
+                <option value="">All priorities</option>
+
+                @foreach (var priority in Enum.GetValues<ReferralPriority>())
+                {
+                    <option value="@priority"
+                            selected="@(Model.Priority == priority)">
+                        @priority
+                    </option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Apply filters
+        </button>
+
+        <a asp-page="./Index">
+            Clear filters
+        </a>
+    </fieldset>
+</form>
+
+<!-- Create referral -->
+<p>
+    <a asp-page="./Create" class="btn btn-primary">
+        Create new referral
+    </a>
+</p>
+
+<!-- Referral listing -->
+<section aria-labelledby="all-referrals-heading">
+
+    <h2 id="all-referrals-heading">All referrals</h2>
+
+    @if (Model.Referrals.Count == 0)
+    {
+        <p>
+            No referrals match your current search or filters,
+            or no referrals have been recorded yet.
+        </p>
+    }
+    else
+    {
+        <div class="referrals-table-wrapper"
+             role="region"
+             aria-label="All referrals table"
+             tabindex="0">
+
+            <table class="table referrals-table">
+                <caption class="visually-hidden">
+                    Community health referrals, including status,
+                    priority, referral date, assigned team and available actions.
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Reference</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Referral date</th>
+                        <th scope="col">Assigned team</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var referral in Model.Referrals)
+                    {
+                        <tr>
+                            <th scope="row">
+                            <a asp-page="./Details"
+                            asp-route-id="@referral.Id">
+                                @referral.Reference
+                            </a>
+                            </th>
+
+                            <td>@referral.ServiceName</td>
+
+                            <td>
+                                @Html.DisplayFor(_ => referral.Status)
+                            </td>
+
+                            <td>@referral.Priority</td>
+
+                            <td>
+                                @referral.ReferralDate.ToString("dd MMM yyyy")
+                            </td>
+
+                            <td>
+                                @(referral.AssignedTeam ?? "Not assigned")
+                            </td>
+
+                                                        
+                            <td>
+                                <a asp-page="./Details"
+                                asp-route-id="@referral.Id"
+                                aria-label="View details for referral @referral.Reference">
+                                    Details
+                                </a>
+
+                                <a asp-page="./Edit"
+                                asp-route-id="@referral.Id"
+                                aria-label="Edit referral @referral.Reference">
+                                    Edit
+                                </a>
+
+                                <a asp-page="./Delete"
+                                asp-route-id="@referral.Id"
+                                aria-label="Delete referral @referral.Reference">
+                                    Delete
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</section>

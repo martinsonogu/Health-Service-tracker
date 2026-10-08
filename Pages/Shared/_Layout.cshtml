@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Community Health Service Tracker</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CommunityHealthServiceTracker.styles.css" asp-append-version="true" />
+</head>
+<body>
+<a class="skip-link" href="#main-content">
+    Skip to main content
+</a>
+<header class="app-header">
+    <div class="app-header__container">
+        <a class="app-brand" asp-page="/Index">
+            <span class="app-brand__title">
+                Community Health Service Tracker
+            </span>
+        </a>
+
+        
+@{
+    var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+}
+
+<nav class="app-navigation" aria-label="Primary navigation">
+    <ul class="app-navigation__list">
+        <li>
+            <a asp-page="/Index"
+               aria-current="@(currentPage == "/Index" ? "page" : null)">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a asp-page="/Referrals/Index"
+               aria-current="@(currentPage == "/Referrals/Index" ? "page" : null)">
+                Referrals
+            </a>
+        </li>
+        <li>
+            <a asp-page="/Referrals/Create"
+               aria-current="@(currentPage == "/Referrals/Create" ? "page" : null)">
+                Create referral
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    </div>
+</header>
+    <div class="container">
+        <main role="main" class="pb-3" id="main-content" tabindex="-1">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - CommunityHealthServiceTracker - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
